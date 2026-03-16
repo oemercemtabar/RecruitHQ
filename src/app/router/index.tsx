@@ -8,6 +8,7 @@ import { InterviewsPage } from "../../pages/InterviewsPage";
 import { ReportsPage } from "../../pages/ReportsPage";
 import { SettingsPage } from "../../pages/SettingsPage";
 import { NotFoundPage } from "../../pages/NotFoundPage";
+import { CandidateProfilePage } from "../../pages/CandidateProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       { path: "interviews", element: <InterviewsPage /> },
       { path: "reports", element: <ReportsPage /> },
       { path: "settings", element: <SettingsPage /> },
+      { path: "candidates/:candidateId", element: <CandidateProfilePage /> },
     ],
   },
   {

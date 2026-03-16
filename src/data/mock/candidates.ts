@@ -12,6 +12,13 @@ export const candidates: Candidate[] = [
     updatedAt: "2 hours ago",
     yearsExperience: 6,
     skills: ["React", "TypeScript", "Design Systems"],
+    email: "giulia.moretti@email.com",
+    phone: "+39 320 111 2233",
+    summary:
+      "Senior frontend engineer with strong experience in React ecosystems, design systems, and scalable UI architecture for SaaS products.",
+    currentCompany: "PixelForge",
+    salaryExpectation: "€65k - €72k",
+    availability: "30 days",
   },
   {
     id: "cand-2",
@@ -24,6 +31,13 @@ export const candidates: Candidate[] = [
     updatedAt: "4 hours ago",
     yearsExperience: 5,
     skills: ["Figma", "Prototyping", "UX Research"],
+    email: "luca.bianchi@email.com",
+    phone: "+39 320 222 3344",
+    summary:
+      "Product designer focused on B2B platforms, interaction design, and building end-to-end user experiences from discovery to polished delivery.",
+    currentCompany: "Studio Loop",
+    salaryExpectation: "€48k - €55k",
+    availability: "Immediate",
   },
   {
     id: "cand-3",
@@ -36,6 +50,13 @@ export const candidates: Candidate[] = [
     updatedAt: "Today",
     yearsExperience: 7,
     skills: ["Recruiting", "Stakeholder Management", "Sourcing"],
+    email: "sofia.conti@email.com",
+    phone: "+39 320 333 4455",
+    summary:
+      "Talent acquisition specialist with experience hiring across product, engineering, and commercial teams in fast-growing tech companies.",
+    currentCompany: "Northlane Talent",
+    salaryExpectation: "€50k - €58k",
+    availability: "15 days",
   },
   {
     id: "cand-4",
@@ -48,6 +69,13 @@ export const candidates: Candidate[] = [
     updatedAt: "1 day ago",
     yearsExperience: 3,
     skills: ["SQL", "Python", "Dashboards"],
+    email: "matteo.ricci@email.com",
+    phone: "+39 320 444 5566",
+    summary:
+      "Data analyst with experience in reporting, KPI design, and business intelligence dashboards for operations and commercial teams.",
+    currentCompany: "DataNest",
+    salaryExpectation: "€36k - €42k",
+    availability: "45 days",
   },
   {
     id: "cand-5",
@@ -60,6 +88,13 @@ export const candidates: Candidate[] = [
     updatedAt: "3 hours ago",
     yearsExperience: 8,
     skills: ["React", "Architecture", "Accessibility"],
+    email: "francesca.russo@email.com",
+    phone: "+39 320 555 6677",
+    summary:
+      "Frontend architect with deep experience in accessibility, component systems, and high-scale product teams.",
+    currentCompany: "BrightStack",
+    salaryExpectation: "€70k - €78k",
+    availability: "60 days",
   },
   {
     id: "cand-6",
@@ -72,6 +107,13 @@ export const candidates: Candidate[] = [
     updatedAt: "2 days ago",
     yearsExperience: 4,
     skills: ["UI Design", "Brand Systems", "Wireframes"],
+    email: "paolo.serra@email.com",
+    phone: "+39 320 666 7788",
+    summary:
+      "Designer with strengths in visual systems, interface exploration, and cross-functional collaboration.",
+    currentCompany: "Modo Creative",
+    salaryExpectation: "€40k - €46k",
+    availability: "30 days",
   },
   {
     id: "cand-7",
@@ -84,6 +126,13 @@ export const candidates: Candidate[] = [
     updatedAt: "5 hours ago",
     yearsExperience: 4,
     skills: ["SQL", "Looker", "Statistics"],
+    email: "alessia.greco@email.com",
+    phone: "+39 320 777 8899",
+    summary:
+      "Analyst experienced in structured reporting, BI tooling, and turning operational data into actionable insights.",
+    currentCompany: "InsightCore",
+    salaryExpectation: "€40k - €47k",
+    availability: "20 days",
   },
   {
     id: "cand-8",
@@ -96,5 +145,12 @@ export const candidates: Candidate[] = [
     updatedAt: "Yesterday",
     yearsExperience: 5,
     skills: ["React", "Testing", "CSS"],
+    email: "davide.romano@email.com",
+    phone: "+39 320 888 9900",
+    summary:
+      "Frontend engineer with strong practical delivery experience in modern React stacks, testing, and UI implementation.",
+    currentCompany: "CodeHarbor",
+    salaryExpectation: "€52k - €58k",
+    availability: "30 days",
   },
 ];

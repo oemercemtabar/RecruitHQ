@@ -24,4 +24,10 @@ export type Candidate = {
   updatedAt: string;
   yearsExperience: number;
   skills: string[];
+  email: string;
+  phone: string;
+  summary: string;
+  currentCompany: string;
+  salaryExpectation: string;
+  availability: string;
 };

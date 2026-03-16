@@ -1,7 +1,7 @@
 import { BriefcaseBusiness, MapPin, Star } from "lucide-react";
 import type { Candidate } from "../../types/candidate";
 import { getScoreTextClass, getStageBadgeClasses } from "../../lib/candidate-ui";
-
+import { Link } from "react-router-dom";
 type PipelineCandidateCardProps = {
   candidate: Candidate;
 };
@@ -52,14 +52,12 @@ export function PipelineCandidateCard({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {candidate.skills.slice(0, 2).map((skill) => (
-          <span
-            key={skill}
-            className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600"
-          >
-            {skill}
-          </span>
-        ))}
+        <Link
+          to={`/candidates/${candidate.id}`}
+          className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-slate-50"
+        >
+          View Profile
+        </Link>
       </div>
 
       <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">

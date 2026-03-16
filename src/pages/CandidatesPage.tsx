@@ -3,6 +3,7 @@ import { Search, SlidersHorizontal, ChevronDown, Eye } from "lucide-react";
 import { candidates } from "../data/mock/candidates";
 import { getScoreTextClass, getStageBadgeClasses } from "../lib/candidate-ui";
 import type { CandidateStage } from "../types/candidate";
+import { Link } from "react-router-dom";
 
 const stageFilters: Array<"All" | CandidateStage> = [
   "All",
@@ -209,10 +210,13 @@ export function CandidatesPage() {
                   </td>
 
                   <td className="px-5 py-4">
-                    <button className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+                    <Link
+                      to={`/candidates/${candidate.id}`}
+                      className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                    >
                       <Eye className="h-4 w-4" />
                       View
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}
