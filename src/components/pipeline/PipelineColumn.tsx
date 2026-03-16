@@ -30,7 +30,7 @@ export function PipelineColumn({
   candidates,
 }: PipelineColumnProps) {
   return (
-    <section className="flex h-full min-h-[520px] flex-col rounded-2xl border border-slate-200 bg-slate-50">
+    <section className="flex h-full min-h-520px flex-col rounded-2xl border border-slate-200 bg-slate-50">
       <div className="border-b border-slate-200 p-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">

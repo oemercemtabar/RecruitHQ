@@ -68,7 +68,7 @@ export function PipelinePage() {
       </section>
 
       <section className="overflow-x-auto pb-2">
-        <div className="grid min-w-[1400px] grid-cols-6 gap-4">
+        <div className="grid min-w-1400px grid-cols-6 gap-4">
           {pipelineStages.map((stage) => (
             <PipelineColumn
               key={stage}
