@@ -8,6 +8,8 @@ import {
   Workflow,
 } from "lucide-react";
 import { PageHeader } from "../components/shared/PageHeader";
+import { useTheme } from "../hooks/useTheme";
+import type { ThemeMode } from "../app/providers/ThemeProvider";
 
 const defaultStages = [
   "Applied",
@@ -24,7 +26,7 @@ export function SettingsPage() {
   const [interviewReminders, setInterviewReminders] = useState(true);
   const [weeklyReports, setWeeklyReports] = useState(false);
   const [compactMode, setCompactMode] = useState(false);
-  const [theme, setTheme] = useState<"Light" | "Dark" | "System">("Light");
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="space-y-6">
@@ -32,7 +34,7 @@ export function SettingsPage() {
         title="Settings"
         description="Configure workspace preferences, hiring process defaults, and team notifications."
         actions={
-          <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
+          <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
             Save changes
           </button>
         }
@@ -40,114 +42,43 @@ export function SettingsPage() {
 
       <section className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="space-y-6 xl:col-span-2">
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex items-start gap-3">
-              <BriefcaseBusiness className="mt-0.5 h-5 w-5 text-slate-500" />
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Workspace
-                </h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  Basic company and recruiting workspace settings.
-                </p>
-              </div>
-            </div>
-
+          <Panel icon={<BriefcaseBusiness className="mt-0.5 h-5 w-5 text-slate-500 dark:text-slate-400" />} title="Workspace" subtitle="Basic company and recruiting workspace settings.">
             <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <div>
-                <label className="text-sm font-medium text-slate-700">
-                  Workspace name
-                </label>
-                <input
-                  defaultValue="RecruitHQ"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none ring-0 placeholder:text-slate-400 focus:border-slate-300"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-slate-700">
-                  Default timezone
-                </label>
-                <input
-                  defaultValue="Europe/Rome"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none ring-0 placeholder:text-slate-400 focus:border-slate-300"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-slate-700">
-                  Careers page URL
-                </label>
-                <input
-                  defaultValue="careers.recruithq.io"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none ring-0 placeholder:text-slate-400 focus:border-slate-300"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-slate-700">
-                  Default recruiter
-                </label>
-                <input
-                  defaultValue="Claudia T."
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none ring-0 placeholder:text-slate-400 focus:border-slate-300"
-                />
-              </div>
+              <Input label="Workspace name" defaultValue="RecruitHQ" />
+              <Input label="Default timezone" defaultValue="Europe/Rome" />
+              <Input label="Careers page URL" defaultValue="careers.recruithq.io" />
+              <Input label="Default recruiter" defaultValue="Claudia T." />
             </div>
-          </section>
+          </Panel>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex items-start gap-3">
-              <Workflow className="mt-0.5 h-5 w-5 text-slate-500" />
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Hiring stages
-                </h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  Define the default pipeline stages used across open roles.
-                </p>
-              </div>
-            </div>
-
+          <Panel icon={<Workflow className="mt-0.5 h-5 w-5 text-slate-500 dark:text-slate-400" />} title="Hiring stages" subtitle="Define the default pipeline stages used across open roles.">
             <div className="mt-5 space-y-3">
               {stages.map((stage, index) => (
                 <div
                   key={stage}
-                  className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 dark:border-slate-700 dark:bg-slate-900/50"
                 >
                   <div>
-                    <p className="text-sm font-medium text-slate-900">{stage}</p>
-                    <p className="mt-1 text-xs text-slate-400">
+                    <p className="text-sm font-medium text-slate-900 dark:text-white">{stage}</p>
+                    <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
                       Stage {index + 1}
                     </p>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <button className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                    <button className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
                       Edit
                     </button>
-                    <button className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50">
+                    <button className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
                       Reorder
                     </button>
                   </div>
                 </div>
               ))}
             </div>
-          </section>
+          </Panel>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex items-start gap-3">
-              <Bell className="mt-0.5 h-5 w-5 text-slate-500" />
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Notifications
-                </h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  Control alerts and reminders for recruiting activity.
-                </p>
-              </div>
-            </div>
-
+          <Panel icon={<Bell className="mt-0.5 h-5 w-5 text-slate-500 dark:text-slate-400" />} title="Notifications" subtitle="Control alerts and reminders for recruiting activity.">
             <div className="mt-5 space-y-4">
               <ToggleRow
                 title="Email notifications"
@@ -155,14 +86,12 @@ export function SettingsPage() {
                 checked={emailNotifications}
                 onChange={setEmailNotifications}
               />
-
               <ToggleRow
                 title="Interview reminders"
                 description="Get reminders before upcoming scheduled interviews."
                 checked={interviewReminders}
                 onChange={setInterviewReminders}
               />
-
               <ToggleRow
                 title="Weekly reports"
                 description="Receive a weekly recruiting performance summary."
@@ -170,45 +99,35 @@ export function SettingsPage() {
                 onChange={setWeeklyReports}
               />
             </div>
-          </section>
+          </Panel>
         </div>
 
         <div className="space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex items-start gap-3">
-              <Palette className="mt-0.5 h-5 w-5 text-slate-500" />
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Appearance
-                </h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  Adjust the workspace display and visual preferences.
-                </p>
-              </div>
-            </div>
-
+          <Panel icon={<Palette className="mt-0.5 h-5 w-5 text-slate-500 dark:text-slate-400" />} title="Appearance" subtitle="Adjust the workspace display and visual preferences.">
             <div className="mt-5 space-y-4">
               <div>
-                <p className="text-sm font-medium text-slate-700">Theme</p>
+                <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Theme
+                </p>
                 <div className="mt-3 grid grid-cols-3 gap-2">
-                  {(["Light", "Dark", "System"] as const).map((option) => {
+                  {(["light", "dark", "system"] as const).map((option) => {
                     const active = theme === option;
 
                     return (
                       <button
                         key={option}
-                        onClick={() => setTheme(option)}
+                        onClick={() => setTheme(option as ThemeMode)}
                         className={[
                           "rounded-xl border px-3 py-3 text-sm font-medium transition",
                           active
-                            ? "border-slate-900 bg-slate-900 text-white"
-                            : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
+                            ? "border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-white dark:text-slate-900"
+                            : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800",
                         ].join(" ")}
                       >
-                        <span className="flex items-center justify-center gap-2">
-                          {option === "Light" ? (
+                        <span className="flex items-center justify-center gap-2 capitalize">
+                          {option === "light" ? (
                             <Sun className="h-4 w-4" />
-                          ) : option === "Dark" ? (
+                          ) : option === "dark" ? (
                             <Moon className="h-4 w-4" />
                           ) : (
                             <Palette className="h-4 w-4" />
@@ -228,63 +147,94 @@ export function SettingsPage() {
                 onChange={setCompactMode}
               />
             </div>
-          </section>
+          </Panel>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900">
-              Scorecard template
-            </h3>
-            <p className="mt-1 text-sm text-slate-500">
-              Default evaluation criteria for candidate interviews.
-            </p>
-
+          <Panel title="Scorecard template" subtitle="Default evaluation criteria for candidate interviews.">
             <div className="mt-5 space-y-3">
-              {[
-                "Role fit",
-                "Technical depth",
-                "Communication",
-                "Problem solving",
-                "Culture add",
-              ].map((item) => (
+              {["Role fit", "Technical depth", "Communication", "Problem solving", "Culture add"].map((item) => (
                 <div
                   key={item}
-                  className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700"
+                  className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900/50 dark:text-slate-200"
                 >
                   {item}
                 </div>
               ))}
             </div>
 
-            <button className="mt-4 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+            <button className="mt-4 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
               Edit template
             </button>
-          </section>
+          </Panel>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900">
-              Workspace summary
-            </h3>
-            <div className="mt-5 space-y-3 text-sm text-slate-600">
+          <Panel title="Workspace summary">
+            <div className="mt-5 space-y-3 text-sm text-slate-600 dark:text-slate-300">
               <div className="flex items-center justify-between">
                 <span>Active roles</span>
-                <span className="font-medium text-slate-900">6</span>
+                <span className="font-medium text-slate-900 dark:text-white">6</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Recruiters</span>
-                <span className="font-medium text-slate-900">4</span>
+                <span className="font-medium text-slate-900 dark:text-white">4</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Interviewers</span>
-                <span className="font-medium text-slate-900">12</span>
+                <span className="font-medium text-slate-900 dark:text-white">12</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Default timezone</span>
-                <span className="font-medium text-slate-900">Europe/Rome</span>
+                <span className="font-medium text-slate-900 dark:text-white">Europe/Rome</span>
               </div>
             </div>
-          </section>
+          </Panel>
         </div>
       </section>
+    </div>
+  );
+}
+
+function Panel({
+  icon,
+  title,
+  subtitle,
+  children,
+}: {
+  icon?: React.ReactNode;
+  title: string;
+  subtitle?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="flex items-start gap-3">
+        {icon}
+        <div>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{title}</h3>
+          {subtitle ? (
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>
+          ) : null}
+        </div>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function Input({
+  label,
+  defaultValue,
+}: {
+  label: string;
+  defaultValue: string;
+}) {
+  return (
+    <div>
+      <label className="text-sm font-medium text-slate-700 dark:text-slate-200">
+        {label}
+      </label>
+      <input
+        defaultValue={defaultValue}
+        className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-slate-600"
+      />
     </div>
   );
 }
@@ -303,10 +253,12 @@ function ToggleRow({
   onChange,
 }: ToggleRowProps) {
   return (
-    <div className="flex items-start justify-between gap-4 rounded-2xl border border-slate-200 p-4">
+    <div className="flex items-start justify-between gap-4 rounded-2xl border border-slate-200 p-4 dark:border-slate-700 dark:bg-slate-900/50">
       <div>
-        <p className="text-sm font-medium text-slate-900">{title}</p>
-        <p className="mt-1 text-sm text-slate-500">{description}</p>
+        <p className="text-sm font-medium text-slate-900 dark:text-white">{title}</p>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          {description}
+        </p>
       </div>
 
       <button
@@ -315,12 +267,12 @@ function ToggleRow({
         onClick={() => onChange(!checked)}
         className={[
           "relative mt-1 inline-flex h-6 w-11 shrink-0 rounded-full transition",
-          checked ? "bg-slate-900" : "bg-slate-300",
+          checked ? "bg-slate-900 dark:bg-white" : "bg-slate-300 dark:bg-slate-700",
         ].join(" ")}
       >
         <span
           className={[
-            "inline-block h-5 w-5 transform rounded-full bg-white transition",
+            "inline-block h-5 w-5 transform rounded-full bg-white transition dark:bg-slate-900",
             checked ? "translate-x-5" : "translate-x-0.5",
             "mt-0.5",
           ].join(" ")}

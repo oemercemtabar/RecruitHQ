@@ -40,15 +40,17 @@ export function PipelineColumn({
   });
 
   return (
-    <section className="flex h-full min-h-520px flex-col rounded-2xl border border-slate-200 bg-slate-50">
-      <div className="border-b border-slate-200 p-4">
+    <section className="flex h-full min-h-[520px] flex-col rounded-2xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/60">
+      <div className="border-b border-slate-200 p-4 dark:border-slate-800">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span className={`h-3 w-3 rounded-full ${getColumnAccent(stage)}`} />
-            <h3 className="text-sm font-semibold text-slate-900">{stage}</h3>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+              {stage}
+            </h3>
           </div>
 
-          <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+          <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700">
             {candidates.length}
           </span>
         </div>
@@ -58,7 +60,7 @@ export function PipelineColumn({
         ref={setNodeRef}
         className={[
           "flex-1 space-y-3 p-3 transition",
-          isOver ? "rounded-b-2xl bg-slate-100" : "",
+          isOver ? "rounded-b-2xl bg-slate-100 dark:bg-slate-800/70" : "",
         ].join(" ")}
       >
         <SortableContext
@@ -73,8 +75,10 @@ export function PipelineColumn({
               />
             ))
           ) : (
-            <div className="flex h-40 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/60 px-4 text-center">
-              <p className="text-sm text-slate-400">No candidates in this stage</p>
+            <div className="flex h-40 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/60 px-4 text-center dark:border-slate-700 dark:bg-slate-900/50">
+              <p className="text-sm text-slate-400 dark:text-slate-500">
+                No candidates in this stage
+              </p>
             </div>
           )}
         </SortableContext>

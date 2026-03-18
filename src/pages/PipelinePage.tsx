@@ -139,54 +139,54 @@ export function PipelinePage() {
           <>
             <button
               onClick={() => setPipelineCandidates(initialCandidates)}
-              className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
             >
               Reset board
             </button>
-            <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+            <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
               Filter by role
             </button>
-            <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
+            <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
               Create stage view
             </button>
           </>
         }
       />
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="rounded-2xl bg-slate-50 px-4 py-3">
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800">
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Total candidates
             </p>
-            <p className="mt-1 text-2xl font-semibold text-slate-900">
+            <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-white">
               {pipelineCandidates.length}
             </p>
           </div>
 
-          <div className="rounded-2xl bg-slate-50 px-4 py-3">
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800">
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
               In interview
             </p>
-            <p className="mt-1 text-2xl font-semibold text-slate-900">
+            <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-white">
               {grouped.Interview.length}
             </p>
           </div>
 
-          <div className="rounded-2xl bg-slate-50 px-4 py-3">
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800">
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Offers sent
             </p>
-            <p className="mt-1 text-2xl font-semibold text-slate-900">
+            <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-white">
               {grouped.Offer.length}
             </p>
           </div>
 
-          <div className="rounded-2xl bg-slate-50 px-4 py-3">
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800">
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Hired
             </p>
-            <p className="mt-1 text-2xl font-semibold text-slate-900">
+            <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-white">
               {grouped.Hired.length}
             </p>
           </div>
@@ -200,7 +200,7 @@ export function PipelinePage() {
         onDragEnd={handleDragEnd}
       >
         <section className="overflow-x-auto pb-2">
-          <div className="grid min-w-[1400px] grid-cols-6 gap-4">
+          <div className="grid auto-cols-280px grid-flow-col gap-4">
             {pipelineStages.map((stage) => (
               <PipelineColumn
                 key={stage}
