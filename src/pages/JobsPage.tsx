@@ -1,6 +1,6 @@
 import { BriefcaseBusiness, Building2, Plus, Users } from "lucide-react";
 import { jobs } from "../data/mock/jobs";
-import { getJobStatusClasses, getWorkModeClasses } from "../lib/job-ui";
+import { getJobStatusClasses, getWorkModeClasses } from "../lib/Job-ui";
 
 export function JobsPage() {
   const activeRoles = jobs.filter((job) => job.status === "Active").length;
