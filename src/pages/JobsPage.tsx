@@ -1,6 +1,7 @@
 import { BriefcaseBusiness, Building2, Plus, Users } from "lucide-react";
 import { jobs } from "../data/mock/jobs";
 import { getJobStatusClasses, getWorkModeClasses } from "../lib/Job-ui";
+import { PageHeader } from "../components/shared/PageHeader";
 
 export function JobsPage() {
   const activeRoles = jobs.filter((job) => job.status === "Active").length;
@@ -14,24 +15,21 @@ export function JobsPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-            Jobs
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Manage open roles, monitor hiring demand, and track applicant volume.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
-            Filter roles
-          </button>
-          <button className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
-            <Plus className="h-4 w-4" />
-            Create role
-          </button>
-        </div>
+        <PageHeader
+          title="Jobs"
+          description="Manage open roles, monitor hiring demand, and track applicant volume."
+          actions={
+            <>
+              <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+                Filter roles
+              </button>
+              <button className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
+                <Plus className="h-4 w-4" />
+                Create role
+              </button>
+            </>
+          }
+        />
       </div>
 
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">

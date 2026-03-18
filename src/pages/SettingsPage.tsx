@@ -7,6 +7,7 @@ import {
   Sun,
   Workflow,
 } from "lucide-react";
+import { PageHeader } from "../components/shared/PageHeader";
 
 const defaultStages = [
   "Applied",
@@ -27,20 +28,15 @@ export function SettingsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-            Settings
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Configure workspace preferences, hiring process defaults, and team notifications.
-          </p>
-        </div>
-
-        <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
-          Save changes
-        </button>
-      </div>
+      <PageHeader
+        title="Settings"
+        description="Configure workspace preferences, hiring process defaults, and team notifications."
+        actions={
+          <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
+            Save changes
+          </button>
+        }
+      />
 
       <section className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="space-y-6 xl:col-span-2">

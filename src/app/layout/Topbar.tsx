@@ -1,14 +1,57 @@
 import { Bell, Search } from "lucide-react";
+import { useLocation } from "react-router-dom";
+
+const routeMeta: Record<string, { title: string; subtitle: string }> = {
+  "/": {
+    title: "Dashboard",
+    subtitle: "Overview of hiring activity, roles, interviews, and funnel metrics.",
+  },
+  "/jobs": {
+    title: "Jobs",
+    subtitle: "Manage open roles, monitor hiring demand, and track applicant volume.",
+  },
+  "/candidates": {
+    title: "Candidates",
+    subtitle: "Search, review, and track applicants across the hiring pipeline.",
+  },
+  "/pipeline": {
+    title: "Pipeline",
+    subtitle: "Track candidates across each stage of the hiring process.",
+  },
+  "/interviews": {
+    title: "Interviews",
+    subtitle: "Manage upcoming interview schedules and track candidate progress.",
+  },
+  "/reports": {
+    title: "Reports",
+    subtitle: "Track hiring performance, funnel progression, and recruiting efficiency.",
+  },
+  "/settings": {
+    title: "Settings",
+    subtitle: "Configure workspace preferences, hiring process defaults, and team notifications.",
+  },
+};
 
 export function Topbar() {
+  const location = useLocation();
+
+  const isCandidateProfile = location.pathname.startsWith("/candidates/");
+  const meta = isCandidateProfile
+    ? {
+        title: "Candidate Profile",
+        subtitle: "Review candidate details, notes, scorecards, and interview progress.",
+      }
+    : routeMeta[location.pathname] ?? {
+        title: "RecruitHQ",
+        subtitle: "Hiring operations workspace",
+      };
+
   return (
     <header className="border-b border-slate-200 bg-white px-6 py-4 lg:px-8">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-lg font-semibold text-slate-900">RecruitHQ</h1>
-          <p className="text-sm text-slate-500">
-            Manage candidates, hiring pipelines, and interviews
-          </p>
+          <h1 className="text-lg font-semibold text-slate-900">{meta.title}</h1>
+          <p className="text-sm text-slate-500">{meta.subtitle}</p>
         </div>
 
         <div className="flex items-center gap-3">

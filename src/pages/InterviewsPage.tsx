@@ -1,5 +1,7 @@
 import { interviews } from "../data/mock/interviews";
 import { InterviewGroupCard } from "../components/interviews/InterviewGroupCard";
+import { PageHeader } from "../components/shared/PageHeader";
+import { Plus } from "lucide-react";
 
 export function InterviewsPage() {
   const today = interviews.filter((item) => item.dateLabel === "Today");
@@ -20,25 +22,20 @@ export function InterviewsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-            Interviews
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Manage upcoming interview schedules and track candidate progress.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
-            Filter calendar
-          </button>
-          <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
-            Schedule interview
-          </button>
-        </div>
-      </div>
+      <PageHeader
+        title="Interviews"
+        description="Manage upcoming interview schedules and track candidate progress."
+        actions={
+          <>
+            <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+              Filter calendar
+            </button>
+            <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
+              Schedule interview
+            </button>
+          </>
+        }
+      />
 
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">

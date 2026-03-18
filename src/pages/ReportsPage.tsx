@@ -17,29 +17,26 @@ import {
   reportStats,
   sourcePerformanceData,
 } from "../data/mock/reports";
+import { PageHeader } from "../components/shared/PageHeader";
+import { Plus } from "lucide-react";
 
 export function ReportsPage() {
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
-            Reports
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Track hiring performance, funnel progression, and recruiting efficiency.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
-            Last 30 days
-          </button>
-          <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
-            Export report
-          </button>
-        </div>
-      </div>
+      <PageHeader
+        title="Reports"
+        description="Track hiring performance, funnel progression, and recruiting efficiency."
+        actions={
+          <>
+            <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+              Last 30 days
+            </button>
+            <button className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800">
+              Export report
+            </button>
+          </>
+        }
+      />
 
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         {reportStats.map((stat) => (
