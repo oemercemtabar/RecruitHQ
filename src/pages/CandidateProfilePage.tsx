@@ -100,7 +100,7 @@ export function CandidateProfilePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:min-w-[360px]">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:min-w-360px">
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Candidate score</p>
                 <p

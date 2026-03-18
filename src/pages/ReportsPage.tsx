@@ -18,7 +18,6 @@ import {
   sourcePerformanceData,
 } from "../data/mock/reports";
 import { PageHeader } from "../components/shared/PageHeader";
-import { Plus } from "lucide-react";
 
 export function ReportsPage() {
   return (

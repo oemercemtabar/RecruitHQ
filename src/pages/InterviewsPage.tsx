@@ -1,7 +1,6 @@
 import { interviews } from "../data/mock/interviews";
 import { InterviewGroupCard } from "../components/interviews/InterviewGroupCard";
 import { PageHeader } from "../components/shared/PageHeader";
-import { Plus } from "lucide-react";
 
 export function InterviewsPage() {
   const today = interviews.filter((item) => item.dateLabel === "Today");
