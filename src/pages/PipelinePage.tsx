@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -15,6 +15,8 @@ import { PipelineColumn } from "../components/pipeline/PipelineColumn";
 import { PipelineCandidateCard } from "../components/pipeline/PipelineCandidateCard";
 import { pipelineStages } from "../lib/pipeline";
 import { PageHeader } from "../components/shared/PageHeader";
+
+const STORAGE_KEY = "recruithq-pipeline-candidates";
 
 function groupCandidatesByStage(candidates: Candidate[]) {
   return pipelineStages.reduce(
@@ -35,9 +37,25 @@ function findCandidateStage(
 }
 
 export function PipelinePage() {
-  const [pipelineCandidates, setPipelineCandidates] =
-    useState<Candidate[]>(initialCandidates);
+  const [pipelineCandidates, setPipelineCandidates] = useState<Candidate[]>(() => {
+    if (typeof window === "undefined") return initialCandidates;
+
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) return initialCandidates;
+
+    try {
+      return JSON.parse(saved) as Candidate[];
+    } catch {
+      return initialCandidates;
+    }
+  });
+
   const [activeCandidate, setActiveCandidate] = useState<Candidate | null>(null);
+
+  useEffect(() => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(pipelineCandidates));
+  }, [pipelineCandidates]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -54,7 +72,9 @@ export function PipelinePage() {
 
   function handleDragStart(event: DragStartEvent) {
     const activeId = String(event.active.id);
-    const found = pipelineCandidates.find((candidate) => candidate.id === activeId) ?? null;
+    const found =
+      pipelineCandidates.find((candidate) => candidate.id === activeId) ?? null;
+
     setActiveCandidate(found);
   }
 
@@ -78,12 +98,21 @@ export function PipelinePage() {
 
     if (activeStage === targetStage) {
       const stageCandidates = grouped[activeStage];
-      const oldIndex = stageCandidates.findIndex((candidate) => candidate.id === activeId);
-      const newIndex = stageCandidates.findIndex((candidate) => candidate.id === overId);
+      const oldIndex = stageCandidates.findIndex(
+        (candidate) => candidate.id === activeId,
+      );
+      const newIndex = stageCandidates.findIndex(
+        (candidate) => candidate.id === overId,
+      );
 
       if (oldIndex === -1 || newIndex === -1 || oldIndex === newIndex) return;
 
-      const reorderedStageCandidates = arrayMove(stageCandidates, oldIndex, newIndex);
+      const reorderedStageCandidates = arrayMove(
+        stageCandidates,
+        oldIndex,
+        newIndex,
+      );
+
       const otherCandidates = pipelineCandidates.filter(
         (candidate) => candidate.stage !== activeStage,
       );
@@ -108,6 +137,12 @@ export function PipelinePage() {
         description="Track candidates across each stage of the hiring process."
         actions={
           <>
+            <button
+              onClick={() => setPipelineCandidates(initialCandidates)}
+              className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+            >
+              Reset board
+            </button>
             <button className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
               Filter by role
             </button>
@@ -165,7 +200,7 @@ export function PipelinePage() {
         onDragEnd={handleDragEnd}
       >
         <section className="overflow-x-auto pb-2">
-          <div className="grid min-w-1400px grid-cols-6 gap-4">
+          <div className="grid min-w-[1400px] grid-cols-6 gap-4">
             {pipelineStages.map((stage) => (
               <PipelineColumn
                 key={stage}
